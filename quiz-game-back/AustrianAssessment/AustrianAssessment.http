@@ -1,0 +1,40 @@
+@AustrianAssessment_HostAddress = http://localhost:5243
+
+### Get a token
+POST {{AustrianAssessment_HostAddress}}/authentication/login
+Content-Type: application/json
+
+{
+    "accessCode": "1234567890"
+}
+
+
+### Get all categories
+GET {{AustrianAssessment_HostAddress}}/categories
+Authorization: Bearer {{token}}
+
+### Get next question
+GET {{AustrianAssessment_HostAddress}}/questions/next?categoryId=9&difficulty=easy
+Authorization: Bearer {{token}}
+
+
+### Get question with Sports category should return 403
+GET {{AustrianAssessment_HostAddress}}/questions/next?categoryId=21&difficulty=easy
+Authorization: Bearer {{token}}
+
+
+
+### Answer question
+POST {{AustrianAssessment_HostAddress}}/questions/submit
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+    "questionId": "09a9ef0c-d51e-4a1b-afa8-42574f1842c7",
+    "answer": "Eight"
+}
+
+
+### Get summary
+GET {{AustrianAssessment_HostAddress}}/questions/summary
+Authorization: Bearer {{token}}

@@ -1,0 +1,38 @@
+<div class="table-border-container">
+  <table class="table-bordered table-divided table">
+    <thead>
+      <tr>
+        <th>Question</th>
+        <th>Correct Answer</th>
+        <th>Your Answer</th>
+        <th>Result</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (answer of answers(); track $index) {
+        <tr>
+          <td class="!whitespace-normal">
+            <h5 [innerHTML]="answer.question | safe: 'html'"></h5>
+          </td>
+          <td>
+            <span [innerHTML]="answer.correctAnswer | safe: 'html'"> </span>
+          </td>
+          <td>
+            <span [innerHTML]="answer.selectedAnswer | safe: 'html'"></span>
+          </td>
+          <td>
+            @if (answer.isCorrect) {
+              <i class="ph-fill ph-check-circle text-xl text-success-500"></i>
+            } @else {
+              <i class="ph-fill ph-x-circle text-xl text-danger-500"></i>
+            }
+          </td>
+        </tr>
+      } @empty {
+        <td colspan="4">
+          <div class="p-4">No Answers Find!</div>
+        </td>
+      }
+    </tbody>
+  </table>
+</div>

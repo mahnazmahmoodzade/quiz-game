@@ -1,0 +1,29 @@
+<section
+  class="flex min-h-14 items-center justify-center border-b border-b-gray-200 py-4"
+>
+  <ng-container [formGroup]="configForm">
+    <div class="flex w-full max-w-2xl flex-col items-center gap-2 md:flex-row">
+      <div class="w-full">
+        <ng-select
+          [items]="categories()"
+          bindLabel="name"
+          bindValue="id"
+          placeholder="Select categories"
+          [clearable]="false"
+          formControlName="categoryId"
+          (change)="categoryChanges($event)"
+        ></ng-select>
+      </div>
+      <div class="w-full">
+        <ng-select
+          [items]="difficulty"
+          bindLabel="name"
+          bindValue="id"
+          placeholder="Select difficulty"
+          [clearable]="false"
+          formControlName="difficulty"
+        ></ng-select>
+      </div>
+    </div>
+  </ng-container>
+</section>

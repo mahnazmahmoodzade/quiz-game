@@ -1,0 +1,15 @@
+:host {
+  @apply flex w-full items-stretch;
+}
+
+.category-item {
+  @apply flex w-full flex-col items-center justify-center gap-3 p-4;
+  @apply rounded-lg border border-gray-200;
+  &.selected {
+    @apply border-rose-500 bg-rose-50/50;
+  }
+  .icon {
+    @apply flex h-10 w-10 items-center justify-center rounded-md text-xl;
+    @apply bg-rose-100 text-rose-600;
+  }
+}

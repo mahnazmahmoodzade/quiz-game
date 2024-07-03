@@ -1,0 +1,15 @@
+.auth-wrapper {
+  @apply fixed inset-0 h-screen w-full;
+  @apply flex items-center justify-center;
+  @apply bg-white;
+  .auth-header {
+    @apply mb-6 pb-6;
+    @apply border-b border-b-gray-100;
+    .logo-container {
+      @apply mb-6 flex h-10 w-10 items-center justify-center overflow-hidden rounded-lg border border-gray-200 bg-white p-2 shadow-sm;
+      img {
+        @apply w-6;
+      }
+    }
+  }
+}

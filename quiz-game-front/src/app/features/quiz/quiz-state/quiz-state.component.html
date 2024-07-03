@@ -1,0 +1,16 @@
+@if (answer(); as answer) {
+  <div
+    class="container mx-auto my-10 flex max-w-xl flex-col items-center justify-center gap-4"
+  >
+    <span class="pill">
+      <i class="ph-fill ph-trophy pill-prefix text-amber-500"></i>
+      Your score <strong class="px-1">{{ answer.currentScore }}</strong>
+    </span>
+    <div class="progress-bar">
+      <div
+        class="progress-item progress-success"
+        [style.width]="progress() + '%'"
+      ></div>
+    </div>
+  </div>
+}

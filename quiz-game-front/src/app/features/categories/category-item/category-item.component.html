@@ -1,0 +1,15 @@
+@if (category(); as category) {
+  <button
+    class="category-item"
+    [class.selected]="isSelected()"
+    (click)="handleSelect()"
+  >
+    <div class="icon">
+      <i class="ph ph-sparkle"></i>
+    </div>
+    <div class="text-container text-center">
+      <h5>{{ category.name }}</h5>
+      <sub class="muted">{{ category.name }} category</sub>
+    </div>
+  </button>
+}

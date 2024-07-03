@@ -1,0 +1,38 @@
+@if (vm(); as vm) {
+  <div class="modal-content">
+    <div class="modal-header">
+      <div class="text-container">
+        <h4>Summary</h4>
+        <small class="muted">Your game summary</small>
+      </div>
+      <button class="btn btn-ghost-default btn-icon btn-xs" mat-dialog-close>
+        <i class="ph ph-x"></i>
+      </button>
+    </div>
+    <div class="modal-body">
+      <mat-dialog-content>
+        @if (vm.summaryError()) {
+          <app-error-template />
+        } @else if (vm.summaryPending()) {
+          <app-spinner />
+        } @else {
+          <div class="flex w-full flex-col items-center justify-center gap-6">
+            <span class="pill pill-warning">
+              <i class="ph-fill ph-trophy pill-prefix text-amber-500"></i>
+              Your final score
+              <strong class="px-1">{{ vm.summary()?.score ?? 0 }}</strong>
+            </span>
+
+            <app-summary-table
+              class="w-full"
+              [answers]="vm.summary()?.answers ?? []"
+            />
+          </div>
+        }
+      </mat-dialog-content>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button class="btn btn-default" mat-dialog-close>Cancel</button>
+  </div>
+}

@@ -1,0 +1,54 @@
+@if (vm(); as vm) {
+  <app-quiz-config />
+  <app-quiz-state [answer]="vm.answer()" />
+  @if (vm.quizError()) {
+    <app-error-template />
+  } @else if (vm.quizPending()) {
+    <app-spinner />
+  } @else {
+    @if (vm.quiz(); as quiz) {
+      <div
+        class="container mx-auto flex w-full flex-col items-center justify-center gap-6 md:max-w-xl"
+      >
+        @if (vm.answer().remainingQuestions) {
+          <div class="text-container text-center">
+            <h5 class="text-amber-500">{{vm.questionStep()}}</h5>
+            <h3 [innerHTML]="quiz.text | safe: 'html'"></h3>
+          </div>
+          <ng-container [formGroup]="quizForm">
+            <div class="grid w-full grid-cols-1 gap-4 md:grid-cols-2">
+              @for (option of quiz.options; track $index) {
+                <fieldset class="form-radio-container">
+                  <input
+                    type="radio"
+                    id="quizOptions-{{ $index }}"
+                    name="answer"
+                    [value]="option"
+                    formControlName="answer"
+                  />
+                  <label for="quizOptions-{{ $index }}">
+                    <div class="radio"></div>
+                    <div class="text-container">
+                      <h5 [innerHTML]="option | safe: 'html'"></h5>
+                    </div>
+                  </label>
+                </fieldset>
+              }
+            </div>
+
+            <button
+              class="btn btn-primary btn-xl"
+              [disabled]="vm.answerPending() || quizForm.invalid"
+              [loading]="vm.answerPending()"
+              (click)="submitAnswer()"
+            >
+              Submit Answer
+            </button>
+          </ng-container>
+        } @else {
+          <app-quiz-finished />
+        }
+      </div>
+    }
+  }
+}

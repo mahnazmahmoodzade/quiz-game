@@ -1,0 +1,23 @@
+@use "@angular/material" as mat;
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@include mat.core();
+$custom-typography: mat.m2-define-typography-config(
+  $font-family: "Inter",
+);
+$theme: mat.m2-define-light-theme(
+  (
+    typography: $custom-typography,
+  )
+);
+@include mat.all-component-themes($theme);
+
+@import "@ng-select/ng-select/themes/default.theme.css";
+@import "@specific-group/spg-design-system/styles/style";
+
+:root {
+  --mdc-dialog-container-color: white;
+}

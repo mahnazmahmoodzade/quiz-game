@@ -1,0 +1,32 @@
+@if (vm(); as vm) {
+  <section class="auth-wrapper">
+    <div class="container mx-auto max-w-md">
+      <div class="auth-header">
+        <h3>Welcome</h3>
+        <p>Add your access code to start game</p>
+      </div>
+      <div class="auth-form">
+        <div class="flex flex-col gap-5">
+          <fieldset class="form-group form-group-floating-fix-label">
+            <input
+              type="text"
+              id="accessCode"
+              class="form-control"
+              [formControl]="accessCode"
+              placeholder="Enter your access code here"
+            />
+            <label class="form-label" for="accessCode">Access code</label>
+          </fieldset>
+        </div>
+        <button
+          class="btn btn-block btn-primary btn-xl mt-10"
+          [disabled]="vm.loginPending() || accessCode.invalid"
+          [loading]="vm.loginPending()"
+          (click)="login()"
+        >
+          Login
+        </button>
+      </div>
+    </div>
+  </section>
+}
